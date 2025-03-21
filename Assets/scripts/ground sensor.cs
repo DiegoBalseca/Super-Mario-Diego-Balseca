@@ -5,7 +5,10 @@ using UnityEngine;
 public class groundsensor : MonoBehaviour
 {
     public bool IsGrounded;
+
+    public enemies _enemies;
     void OnTriggerEnter2D(Collider2D collider)
+
     {
         IsGrounded = true;
         if(collider.gameObject.layer == 3)
@@ -14,6 +17,16 @@ public class groundsensor : MonoBehaviour
             Debug.Log(collider.gameObject.name);
             Debug.Log(collider.gameObject.transform.position);
         }
+
+        else if (collider.gameObject.layer == 6)
+
+        Destroy(collider.gameObject);
+
+        (
+            enemieScript = collider gameObject GetComponent
+        )
+
+        
     }
 
  void OnTriggerStay2D(Collider2D Collider)
