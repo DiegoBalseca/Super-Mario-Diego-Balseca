@@ -14,6 +14,13 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private AudioSource audioSource;
     public AudioClip jumpSFX;
+    public Transform posicion;
+    public GameObject _gameobject; 
+    public AudioClip shootSFX;
+    public bool Canshoot _canshoot;
+    public float PowerUpTime _poweruptime = 20
+    public float PowerUpFire _powerupfire
+
 
     void Awake()
     { 
@@ -23,6 +30,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +59,23 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsJumping", true)
         }*/
+
+        if input.GetButtonDown("Fire")
+        {
+            shoot()
+        }
+
+
+        void shoot()
+        {
+            instanted(...).rotati
+        } 
+        AudioClip.PlayOneShoot
+
+        PowerUp timer += deltaTime
+        if(Power timer) <= 
+        Canshoot = Time
+
     }
     
     void FixedUpdate()
@@ -63,6 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         if(inputHorizontal > 0)
         {
+            transform.rotation = Quaternion.eurel (0, 0, 0)
             spriteRenderer.flipX = false;
             animator.SetBool("is running", true);
         }
@@ -74,6 +101,7 @@ public class PlayerController : MonoBehaviour
         else
             animator.SetBool("is running", false);
         
+            
     }
     void Jump()
     {
@@ -82,6 +110,15 @@ public class PlayerController : MonoBehaviour
         audioSource.PlayOneShot(jumpSFX);
     }
     
+    void PowerUp()
+    {
+        PowerUp timer += deltaTime
+        if(Power timer) <= 
+        Canshoot = false
+        PowerUp timer = 0
+    }
+
+
 }
     
 

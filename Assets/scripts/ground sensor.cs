@@ -7,6 +7,9 @@ public class groundsensor : MonoBehaviour
     public bool IsGrounded;
 
     public enemies _enemies;
+
+    public Rigidbody2D _rigibody;
+
     void OnTriggerEnter2D(Collider2D collider)
 
     {
@@ -25,6 +28,11 @@ public class groundsensor : MonoBehaviour
         (
             enemieScript = collider gameObject GetComponent
         )
+
+    void Awake()
+    GetComponent Inparent
+    AddForce 
+    
 
         
     }

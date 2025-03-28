@@ -13,6 +13,8 @@ public class misterybox : MonoBehaviour
     private bool _isopen = false;
 
     public AudioClip _misteryboxSFX2;
+    
+    
 
     void Awake()
     {
@@ -30,9 +32,8 @@ public class misterybox : MonoBehaviour
             audioSource.clip = _misteryBoxSFX;
             _isopen = true;
         }
-        
-        
 
+        
         else
         {
 
@@ -51,7 +52,13 @@ public class misterybox : MonoBehaviour
             ActivatieBox();
             }
         }
+
+    void mushroom()
+    {
+
+    }    
 }   
+
 
 
 

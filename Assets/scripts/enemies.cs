@@ -18,13 +18,18 @@ public class enemies : MonoBehaviour
 
     public BoxCollider2D _boxcollider
 
+    
+
     void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
         _rigidBody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _boxcollider = GetComponent<_boxcolider>();
+        
+        
     }
+
     
     // Start is called before the first frame update
     void Start()
