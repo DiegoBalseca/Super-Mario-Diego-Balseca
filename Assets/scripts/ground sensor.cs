@@ -2,39 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class groundsensor : MonoBehaviour
+public class GroundSensor : MonoBehaviour
 {
     public bool IsGrounded;
 
-    public enemies _enemies;
-
-    public Rigidbody2D _rigibody;
-
+    public enemies enemies;
+    private Rigidbody2D rigidBody;
+    private float jumpForce = 12;
+    void Awake()
+    {
+        rigidBody = GetComponentInParent<Rigidbody2D>();
+    }
     void OnTriggerEnter2D(Collider2D collider)
-
+    
     {
         IsGrounded = true;
         if(collider.gameObject.layer == 3)
         {
             IsGrounded = true;
-            Debug.Log(collider.gameObject.name);
-            Debug.Log(collider.gameObject.transform.position);
+            //Debug.Log(collider.gameObject.name);
+            //Debug.Log(collider.gameObject.transform.position);
         }
-
-        else if (collider.gameObject.layer == 6)
-
-        Destroy(collider.gameObject);
-
-        (
-            enemieScript = collider gameObject GetComponent
-        )
-
-    void Awake()
-    GetComponent Inparent
-    AddForce 
-    
-
-        
+        else if(collider.gameObject.layer == 6)
+        {
+            enemies = collider.gameObject.GetComponent<enemies>();
+            rigidBody.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
+            enemies.Death();
+        }
     }
 
  void OnTriggerStay2D(Collider2D Collider)

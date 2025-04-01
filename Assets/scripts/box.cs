@@ -2,48 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class box : MonoBehaviour
+public class Box : MonoBehaviour
 {
-    public AudioSource _audioSource;
-    public Collider2D collider;
-    public AudioClip boxFCX;
-    public SpriteRenderer _spriteRenderer;
-    public BoxCollider2D _boxcollided1;
-    public BoxCollider2D _boxcollided2;
- 
-   
- 
- void Awake()
+    private AudioSource audioSource;
+    private SpriteRenderer spriteRenderer;
+    public BoxCollider2D collider1;
+    public BoxCollider2D collider2;
+    public AudioClip boxSFX;
 
- {
-    _audioSource = GetComponent<AudioSource>();
-    _spriteRenderer = GetComponent<SpriteRenderer>();
- }
- 
- 
-void Destroybox ()
-{
-    _audioSource.clip = boxFCX;
-    _audioSource.Play();
-    _spriteRenderer.enabled = false;
-    _boxcollided1.enabled = false;
-    _boxcollided2.enabled = false;
-
-Destroy(gameObject, boxFCX.length);
-
-} 
-    void OnTriggerEnter2D(Collider2D collider)
-{
-    if (collider.gameObject.CompareTag ("Player"))
+    void Awake()
     {
-        Destroybox();
+        audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-}
-    
 
+    void DestroyBox()
+    {
+        audioSource.clip = boxSFX;
+        audioSource.Play();
+        spriteRenderer.enabled = false;
+        collider1.enabled = false;
+        collider2.enabled = false;
+        Destroy(gameObject, boxSFX.length);
+    }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.CompareTag("Player")) //Tambien se puede poner .tag == "Player"
+        {
+            DestroyBox();
+        }
+    }
 
-
-
-
- 
 }

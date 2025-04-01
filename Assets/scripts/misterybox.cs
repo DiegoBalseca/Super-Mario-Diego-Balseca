@@ -2,62 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class misterybox : MonoBehaviour
+public class MisteryBox : MonoBehaviour
 {
     private Animator animator;
 
     private AudioSource audioSource;
 
-    public AudioClip _misteryBoxSFX;
-
-    private bool _isopen = false;
-
-    public AudioClip _misteryboxSFX2;
+    public AudioClip MisteryBoxSFX;
+    public AudioClip MisteryBoxSFXOpen;
+    public Transform mushroomSpawn;
+    public GameObject mushroomPrefab;
+    public AudioClip mushroomSFX;
+    private bool isOpened = false;
     
-    
-
     void Awake()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-    
     }
+    void ActivateBox()
+     {
 
-    void ActivatieBox()
-    {
-        
-        if(!_isopen)
+        if(!isOpened)
         {
-            animator.SetTrigger("is used");
-            audioSource.clip = _misteryBoxSFX;
-            _isopen = true;
+            animator.SetTrigger("IsUsed");
+            audioSource.clip = MisteryBoxSFX;
+            Instantiate(mushroomPrefab, mushroomSpawn.position, mushroomSpawn.rotation);
+            isOpened = true;
         }
-
-        
         else
         {
-
-            audioSource.clip = _misteryboxSFX2;
+            audioSource.clip = MisteryBoxSFXOpen;
         }
         audioSource.Play();
+     }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.CompareTag("Player"))
+        {
+            ActivateBox();
+        }
     }
 
-
-
-
-        void OnTriggerEnter2D(Collider2D collider)
-        {
-            if(collider.gameObject.CompareTag("Player"))
-            {
-            ActivatieBox();
-            }
-        }
-
-    void mushroom()
-    {
-
-    }    
-}   
+}
 
 
 

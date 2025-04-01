@@ -4,64 +4,67 @@ using UnityEngine;
 
 public class enemies : MonoBehaviour
 {
-    public float direction = 1;
-    
+
+    private Animator animator;
+    private AudioSource audioSource;
+
+    public AudioClip goombadeathSFX;
+    private Rigidbody2D rigidBody;
+    public int direction = -1;
     public float speed = 5;
 
-    public Animator _animator;
-    
-    private AudioSource _audioSource;
-
-    private Rigidbody2D _rigidBody;
-
-    private AudioClip _AudioSFX;
-
-    public BoxCollider2D _boxcollider
-
-    
-
+    private BoxCollider2D boxCollider;
     void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
-        _rigidBody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _boxcollider = GetComponent<_boxcolider>();
-        
-        
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        rigidBody = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    
-    // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        speed = 0;
     }
 
     void FixedUpdate()
     {
-        _rigidBody.velocity = new Vector2 (direction * speed, _rigidBody.velocity.y );
+        rigidBody.velocity = new Vector2(direction * speed, rigidBody.velocity.y);
     }
 
-    public void dead()
+    public void Death()
     {
-        _animator.SetTrigger("is dead");
-        Destroy(gameObject. 0,3); 
+        direction = 0;
+        rigidBody.gravityScale = 0;
+        animator.SetTrigger("IsDead");
+        boxCollider.enabled = false;
+        Destroy(gameObject, 0.3f);
     }
 
-    void OnCollisionEnter2D (Collision2D collision)
-{
-    direction *= -1;
-
-    if(collision.gameObject.CompareTag("Player"))
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(collision.gameObject);
+        if(collision.gameObject.CompareTag("Tuberia") || collision.gameObject.layer == 6);
+        {
+            direction *= -1;
+        }
+        
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            //Destroy(collision.gameObject);
+            Mario playerScript = collision.gameObject.GetComponent<Mario>();
+            playerScript.Death();
+        }
+        
     }
-}
-    
+
+
+    void OnBecameVisible()
+    {
+        speed = 2;
+    }
+
+    void OnBecameInvisible()
+    {
+        speed = 0;
+    }
 }
