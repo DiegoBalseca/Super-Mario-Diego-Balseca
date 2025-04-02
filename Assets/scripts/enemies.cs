@@ -43,7 +43,7 @@ public class enemies : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Tuberia") || collision.gameObject.layer == 6);
+        if(collision.gameObject.CompareTag("Tuberia") || collision.gameObject.layer == 6 || collision.gameObject.layer == 10);
         {
             direction *= -1;
         }
@@ -56,6 +56,8 @@ public class enemies : MonoBehaviour
         }
         
     }
+
+
 
 
     void OnBecameVisible()

@@ -10,10 +10,15 @@ public class SoundManager : MonoBehaviour
     public AudioClip gameOver;
     public float delay = 3f; //CRONOMETRO
     public float timer; //CRONOMETRO
+    public bool IsFinished = false;
+
+    
 
     private GameManager gameManager;
 
     private bool timerFinished = false;
+
+
 
 
     void Awake()
@@ -46,7 +51,7 @@ public class SoundManager : MonoBehaviour
 
     public void PauseBGM()
     {
-        if(gameManager.isPaused)
+        if(gameManager.isPaused || IsFinished)
         {
             audioSource.Pause();
         }
