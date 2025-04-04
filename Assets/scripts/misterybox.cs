@@ -25,7 +25,7 @@ public class MisteryBox : MonoBehaviour
 
         if(!isOpened)
         {
-            animator.SetTrigger("IsUsed");
+            animator.SetTrigger("is used");
             audioSource.clip = MisteryBoxSFX;
             Instantiate(mushroomPrefab, mushroomSpawn.position, mushroomSpawn.rotation);
             isOpened = true;

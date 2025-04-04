@@ -36,7 +36,7 @@ public class enemies : MonoBehaviour
     {
         direction = 0;
         rigidBody.gravityScale = 0;
-        animator.SetTrigger("IsDead");
+        animator.SetTrigger("is dead");
         boxCollider.enabled = false;
         Destroy(gameObject, 0.3f);
     }

@@ -143,7 +143,8 @@ public class Mario : MonoBehaviour
         powerUpTimer += Time.deltaTime;
         if(powerUpTimer >= powerUpDuration)
         {
-            canShoot = false;
+            canShoot = false; 
+            powerUpTimer = 0;
         }
     }
     
