@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject pauseCanvas;
     private int coins= 0; 
     public Text coinsText;
+    private int goombas= 0;
+    public Text goombasText;
   
     void Awake()
     {
@@ -54,10 +56,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
      public void AddCoins()
      {
         coins++;
         coinsText.text =  "Coins: " + coins.ToString(); 
+     }
+
+     public void AddGoombas()
+     {
+        goombas++;
+        goombasText.text = "Goombas: " + goombas.ToString();
      }
     
 

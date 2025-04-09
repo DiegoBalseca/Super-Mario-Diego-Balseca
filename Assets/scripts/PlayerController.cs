@@ -31,6 +31,8 @@ public class Mario : MonoBehaviour
     public bool canShoot = false;
     public AudioClip powerUpSFX;
     private SpriteRenderer renderer;
+    public float delay = 3;
+    private AudioClip gameOver;
     
 
     void Awake()
@@ -134,8 +136,24 @@ public class Mario : MonoBehaviour
         rigidBody.AddForce(Vector2.up * jumpForce/1.5f, ForceMode2D.Impulse);
         gameManager.isPlaying = false;
         Destroy(gameObject, 2);
+
+        StartCoroutine(GameOver());
+
     
+
     }
+        public IEnumerator GameOver()
+        {
+            audioSource.Stop();
+            yield return new WaitForSeconds(delay);
+            audioSource.PlayOneShot(gameOver);
+        }
+        
+    
+ 
+
+    
+    
     public void Shoot()
     {
         Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);

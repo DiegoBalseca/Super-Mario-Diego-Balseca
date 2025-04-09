@@ -16,6 +16,7 @@ public class enemies : MonoBehaviour
     public float speed = 5;
     public float maxHealth = 10;
     private float currentHealt;
+    GameManager _gameManager;
 
 
 
@@ -27,6 +28,7 @@ public class enemies : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         _healthBar = GetComponentInChildren<Slider>();
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     void Start()
@@ -50,6 +52,7 @@ public class enemies : MonoBehaviour
         animator.SetTrigger("is dead");
         boxCollider.enabled = false;
         Destroy(gameObject, 0.3f);
+        _gameManager.AddGoombas();
     }
 
     public void TakeDamage(float damage)
@@ -80,6 +83,8 @@ public class enemies : MonoBehaviour
         
     }
 
+    
+
 
 
 
@@ -92,4 +97,7 @@ public class enemies : MonoBehaviour
     {
         speed = 0;
     }
+
+
+
 }
