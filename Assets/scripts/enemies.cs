@@ -16,7 +16,8 @@ public class enemies : MonoBehaviour
     public float speed = 5;
     public float maxHealth = 10;
     private float currentHealt;
-    GameManager _gameManager;
+    private GameManager _gameManager;
+    
 
 
 
@@ -28,7 +29,7 @@ public class enemies : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         _healthBar = GetComponentInChildren<Slider>();
-        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        _gameManager = FindObject<GameManager>().GetComponent<GameManager>();
     }
 
     void Start()
@@ -90,12 +91,14 @@ public class enemies : MonoBehaviour
 
     void OnBecameVisible()
     {
-        speed = 2;
+        dircection = 1;
+        _gameManager.enemiesInScreen.Add(gameObject);
     }
 
     void OnBecameInvisible()
     {
-        speed = 0;
+        dirction = 0;
+        _gameManager.enemiesInScreen.Remove(gameObject);
     }
 
 
